@@ -33,6 +33,14 @@ To run our scrapy spider
     $ scrapy crawl <spider-name>
     $ scrapy crawl <spider-name> -O filename.json
 
+To run an already defined spider project, navigate to where the spider file is located or include its path in the following command:
+
+    $ scrapy runspider /path/to/spiders/spider-file.py
+
+If you have this repository cloned run:
+
+    $ scrapy runspider learnscrapy/bookscraper/spiders/bookspider.py
+
 **note it's important to understand css and html for successfull scraping**
 
-**HAPPY WEBSCRAPING**
+**HAPPY WEB SCRAPING**
