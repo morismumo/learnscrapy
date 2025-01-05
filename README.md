@@ -34,4 +34,5 @@ To run our scrapy spider
     $ scrapy crawl <spider-name> -O filename.json
 
 **note it's important to understand css and html for successfull scraping**
+
 **HAPPY WEBSCRAPING**
