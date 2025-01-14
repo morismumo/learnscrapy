@@ -62,14 +62,15 @@ import psycopg
 class SaveToMyPostgresPipeline:
     def __init__(self):
        
-        password = 'postgres'
+        password = 'secret'
         username = 'postgres'
         database = 'booksdb'
         hostname = 'localhost'
+        port='5435'
 
         ## connetct to database
         self.conn = psycopg.connect(
-            host=hostname ,user=username, password=password, dbname=database
+            host=hostname ,user=username, password=password, dbname=database, port=port
         )
 
         ## create cursor, used to execute commands

@@ -1,0 +1,56 @@
+# running metabase with PostgreSQL database
+
+services:
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    restart: always
+    hostname: metabase
+    volumes:
+      - /home/mumo/docker_volumes/metabase:/dev/random:ro
+    ports:
+      - 3000:3000
+    env_file:
+      - ./meta.env 
+    networks:
+      - metanet1
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  postgres1:
+    image: postgres:13
+    restart: always
+    container_name: postgres1
+    hostname: postgres1
+    env_file:
+      - ./meta.env
+    networks:
+      - metanet1
+
+# this is a compose file to start postgres in docker.
+# we will store our scraped data here!
+
+  postgres2:
+    image: postgres:13
+    container_name: postgres2
+    restart: always
+    hostname: postgres2
+    env_file:
+      - .env 
+    ports:
+      - '5435:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+      - metanet1
+volumes:
+  db:
+
+networks:
+  metanet1:
+    driver: bridge
+
+      
